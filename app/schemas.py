@@ -1,5 +1,7 @@
 # coding: utf-8
 import http
+import luhnpy
+
 from marshmallow import post_load, validates_schema, ValidationError, fields
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import Payment, Type, Client, Card
@@ -22,7 +24,11 @@ class CardSchema(ModelSchema):
 
         if len(number) > 0 and int(number) == 0:
             raise ValidationError(
-                "Credit card is invalid.", field_names="number")
+                "Invalid credit card.", field_names="number")
+
+        if luhnpy.verify(number) is False:
+            raise ValidationError(
+                "Invalid credit card.", field_names="number")
 
 
 class PaymentCreditCardSchema(ModelSchema):
