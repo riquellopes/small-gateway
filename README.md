@@ -7,7 +7,7 @@ Small Gateway
 curl -X POST \
 http://localhost:5000/api/v1/capture/ \
 -H 'content-type: application/json' \
--H 'x-client: 1' \
+-H 'X-CLIENT: 1' \
 -d '{
         "amount": 50.00,
         "buyer": {
