@@ -5,7 +5,7 @@ services:
         container_name: small-gateway
         volumes:
           - .:/small_gateway
-          - ./tmp:/tmp
+          - ./.tmp:/tmp
         command: flask run --host=0.0.0.0
         expose:
           - 5000
