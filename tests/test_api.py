@@ -70,7 +70,7 @@ def test_get_status_422_when_credit_card_it_is_not_a_number(test_client, credit_
     assert data['errors']['credit_card']['number'][0] == 'The credit card should be a numeral.'
 
 
-def test_get_status_422_when_send_a_invalid_credit_card(test_client, credit_card, client):
+def test_get_status_422_when_to_send_a_invalid_credit_card(test_client, credit_card, client):
     data = {
         "credit_card": {
             "holder_name": "Will Ferrell",
@@ -105,3 +105,22 @@ def test_get_422_when_buyer_send_only_0000000000000000_as_number(
 
     data = response.json
     assert data['errors']['credit_card']['number'][0] == 'Invalid credit card.'
+
+
+def test_get_422_when_to_send_the_credit_card_expired(
+        test_client, credit_card, client):
+    data = {
+        "credit_card": {
+            "holder_name": "Will Ferrell",
+            "number": "4485297637447408",
+            "expiration_date": "02/2000",
+            "cvv": "850"
+        }
+    }
+
+    response = test_client.post(
+        "/api/v1/capture/", headers={"X-CLIENT": client.id}, json=data)
+    assert response.status_code == 422
+
+    data = response.json
+    assert data['errors']['credit_card']['expiration_date'][0] == "The credit card it's expired"
