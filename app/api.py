@@ -3,6 +3,8 @@ from flask import redirect
 from flask_restful import Api
 from flask_cors import CORS
 from flasgger import Swagger
+from webargs.flaskparser import abort, parser
+
 from app import app as application
 from app.db import db
 from app.resources import PaymentResource
@@ -25,3 +27,13 @@ app = setup_app()
 @app.route("/")
 def home():
     return redirect('/apidocs')
+
+
+# https://github.com/sloria/webargs/blob/dev/examples/flaskrestful_example.py#L72
+# This error handler is necessary for usage with Flask-RESTful
+@parser.error_handler
+def handle_request_parsing_error(err, req, schema):
+    """webargs error handler that uses Flask-RESTful's abort function to return
+    a JSON error response to the client.
+    """
+    abort(err.status_code, errors=err.messages)

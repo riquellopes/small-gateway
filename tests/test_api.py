@@ -50,3 +50,21 @@ def test_get_status_200_when_a_new_transaction_of_capture_is_done(test_client, c
     response = test_client.post(
         "/api/v1/capture/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 200
+
+
+def test_get_status_422_when_send_a_invalid_credit_card(test_client, credit_card, client):
+    data = {
+        "credit_card": {
+            "holder_name": "Will Ferrell",
+            "number": "xxxxxxxxxxxxxxxxx",
+            "expiration_date": "02/2050",
+            "cvv": "850"
+        }
+    }
+
+    response = test_client.post(
+        "/api/v1/capture/", headers={"X-CLIENT": client.id}, json=data)
+    assert response.status_code == 422
+
+    data = response.json
+    assert data['errors']['credit_card']['number'][0] == 'The credit card should be a numeral.'

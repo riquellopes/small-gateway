@@ -1,12 +1,32 @@
 # coding: utf-8
 import http
-from marshmallow import post_load, validates_schema, ValidationError
+from marshmallow import post_load, validates_schema, ValidationError, fields
 from marshmallow_sqlalchemy import ModelSchema
-from app.models import Payment, Type, Client
+from app.models import Payment, Type, Client, Card
 from app.db import db
 
 
+class CardSchema(ModelSchema):
+
+    class Meta:
+        model = Card
+        sqla_session = db.session
+
+    @validates_schema
+    def validate(self, data):
+        number = data.get("number")
+
+        if number.isdigit() is False:
+            raise ValidationError(
+                "The credit card should be a numeral.", field_names="number")
+
+        if len(number) > 0 and int(number) == 0:
+            raise ValidationError(
+                "Credit card is invalid.", field_names="number")
+
+
 class PaymentCreditCardSchema(ModelSchema):
+    credit_card = fields.Nested(CardSchema)
 
     class Meta:
         model = Payment
