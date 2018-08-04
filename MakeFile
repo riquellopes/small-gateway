@@ -7,3 +7,7 @@ up:
 build:
 	docker-compose stop
 	docker-compose build
+
+test:
+	docker-compose stop
+	docker-compose run --rm small pytest tests/ -s -r a --color=yes -vvv
