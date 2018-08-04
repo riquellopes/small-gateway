@@ -2,7 +2,7 @@
 import http
 import luhnpy
 
-from marshmallow import post_load, validates_schema, ValidationError, fields
+from marshmallow import post_load, validates_schema, validates, ValidationError, fields
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import Payment, Type, Client, Card
 from app.db import db
@@ -14,10 +14,8 @@ class CardSchema(ModelSchema):
         model = Card
         sqla_session = db.session
 
-    @validates_schema
-    def validate(self, data):
-        number = data.get("number")
-
+    @validates("number")
+    def validate_number(self, number):
         if number.isdigit() is False:
             raise ValidationError(
                 "The credit card should be a numeral.", field_names="number")
