@@ -1,0 +1,18 @@
+version: '2'
+services:
+    small:
+        build: .
+        container_name: small-gateway
+        volumes:
+          - .:/small_gateway
+          - ./tmp:/tmp
+        command: flask run --host=0.0.0.0
+        expose:
+          - 5000
+        ports:
+          - 5000:5000
+        environment:
+            FLASK_APP: run.py
+            FLASK_DEBUG: 1
+            PORT: 5000
+            SQLALCHEMY_DATABASE_URI: sqlite:////tmp/small_gateway.db
