@@ -5,6 +5,7 @@ from app.db import db
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
 
 
 class Buyer(db.Model):
@@ -37,10 +38,10 @@ class Payment(db.Model):
     card_id = db.Column(db.Integer, db.ForeignKey(Card.id))
     type_id = db.Column(db.Integer, db.ForeignKey(Type.id), nullable=False)
     buyer_id = db.Column(db.Integer, db.ForeignKey(Buyer.id), nullable=False)
-    client_id = db.Column(db.Integer, db.ForeignKey(Buyer.id), nullable=False)
+    client_id = db.Column(db.Integer, db.ForeignKey(Client.id), nullable=False)
 
     # relationships
-    card = db.relationship("Card", foreign_keys=[card_id])
+    credit_card = db.relationship("Card", foreign_keys=[card_id])
     type = db.relationship("Type", foreign_keys=[type_id])
     buyer = db.relationship("Buyer", foreign_keys=[buyer_id])
     client = db.relationship("Client", foreign_keys=[client_id])

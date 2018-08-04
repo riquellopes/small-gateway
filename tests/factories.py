@@ -9,7 +9,7 @@ class ClientFactory(Factory):
     class Meta:
         model = Client
         sqlalchemy_session = db.session
-        sqlalchemy_session_persistence = "flush"
+        sqlalchemy_session_persistence = "commit"
 
 
 class BuyerFactory(Factory):
@@ -30,7 +30,7 @@ class TypeFactory(Factory):
     class Meta:
         model = Type
         sqlalchemy_session = db.session
-        sqlalchemy_session_persistence = "flush"
+        sqlalchemy_session_persistence = "commit"
 
 
 class PaymentFactory(Factory):

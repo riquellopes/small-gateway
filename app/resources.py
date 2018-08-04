@@ -1,11 +1,21 @@
 # coding: utf-8
+import http
+
+from flask import jsonify, make_response
 from flask_restful import Resource
+from webargs.flaskparser import use_args
+
+from app.schemas import PaymentCreditCardSchema
+from app.db import db
 
 
 class PaymentResource(Resource):
 
     # @TODO to add a wrapping for validate the client
-    def post(self):
+    @use_args(
+        PaymentCreditCardSchema(
+            strict=True, only=("amount", "buyer", "credit_card", "X-CLIENT")), locations=("headers", "json"))
+    def post(self, payment):
         """
        Captura o pagamento do comprador.
        ---
@@ -48,4 +58,9 @@ class PaymentResource(Resource):
          403:
            description: Cliente inválido.
         """
-        pass
+
+        db.session.add(payment)
+        db.session.commit()
+
+        return make_response(
+            jsonify(mensagem="payment created successfully"), http.HTTPStatus.OK)

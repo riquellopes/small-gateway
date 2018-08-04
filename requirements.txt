@@ -4,3 +4,5 @@ Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.3.2
 flasgger==0.9.0
 webargs==4.0.0
+marshmallow==2.15.3
+marshmallow-sqlalchemy==0.14.0
