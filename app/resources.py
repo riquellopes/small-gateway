@@ -11,7 +11,6 @@ from app.db import db
 
 class PaymentResource(Resource):
 
-    # @TODO to add a wrapping for validate the client
     @use_args(
         PaymentCreditCardSchema(
             strict=True, only=("amount", "buyer", "credit_card", "X-CLIENT")), locations=("headers", "json"))
