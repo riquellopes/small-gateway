@@ -19,6 +19,11 @@ class PaymentResource(Resource):
        Captura o pagamento do comprador.
        ---
        parameters:
+         - in: header
+           name: X-CLIENT
+           schema:
+             type: string
+           required: true
          - in: body
            name: data
            required: true
@@ -56,6 +61,20 @@ class PaymentResource(Resource):
              type: object
          403:
            description: Cliente inválido.
+           schema:
+             type: object
+             properties:
+               errors:
+                 type: object
+                 properties:
+                    client:
+                      type: array
+                      items:
+                        type: string
+         422:
+           description: Houve algum erro ao processar a requisição
+           schema:
+             type: object
         """
 
         db.session.add(payment)

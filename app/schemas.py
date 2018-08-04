@@ -58,4 +58,5 @@ class PaymentCreditCardSchema(ModelSchema):
     def validate(self, data):
         if Client.query.filter(Client.id == data.get("X-CLIENT")).count() is 0:
             raise ValidationError(
-                "Client does not exist.", status_code=http.client.FORBIDDEN)
+                "Client does not exist.",
+                status_code=http.client.FORBIDDEN, field_names="client")
