@@ -67,6 +67,7 @@ def upgrade():
         sa.PrimaryKeyConstraint('id')
     )
 
+    # http://alembic.zzzcomputing.com/en/latest/ops.html?highlight=insert#alembic.operations.Operations.bulk_insert
     op.bulk_insert(client_table, [{
         "id": 1,
         "name": "Moip Client"
