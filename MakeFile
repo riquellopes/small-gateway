@@ -10,4 +10,4 @@ build:
 
 test:
 	docker-compose stop
-	docker-compose run --rm small pytest --cov=app --cov-report term-missing tests/ -s -r a --color=yes -vvv
+	docker-compose run --rm small pytest --cov=app --cov-report term-missing tests/${path} -s -r a --color=yes -vvv
