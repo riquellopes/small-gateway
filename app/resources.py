@@ -5,7 +5,7 @@ from flask import jsonify, make_response
 from flask_restful import Resource
 from webargs.flaskparser import use_args
 
-from app.schemas import PaymentCreditCardSchema
+from app.schemas import PaymentCreditCardSchema, PaymentBoletoSchema
 from app.db import db
 
 
@@ -86,5 +86,12 @@ class PaymentResource(Resource):
 
 class BoletoResource(Resource):
 
-    def post(self):
-        pass
+    @use_args(
+        PaymentBoletoSchema(
+            strict=True, only=("amount", "buyer", "X-CLIENT")), locations=("headers", "json"))
+    def post(self, payment):
+        db.session.add(payment)
+        db.session.commit()
+
+        return make_response(
+            jsonify(payment_code=payment.code), http.HTTPStatus.OK)

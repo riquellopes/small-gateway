@@ -13,4 +13,4 @@ def test_get_status_200_and_get_number_of_boleto(test_client, boleto, client):
         "/api/v1/boleto/", headers={"X-CLIENT": client.id}, json=data)
 
     assert response.status_code == 200
-    assert response.json["number"] == "000001"
+    assert response.json["payment_code"] == "000001"

@@ -11,6 +11,9 @@ class ClientFactory(Factory):
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "commit"
 
+    id = 1
+    name = "Loja do GuGu"
+
 
 class BuyerFactory(Factory):
     class Meta:
@@ -18,12 +21,21 @@ class BuyerFactory(Factory):
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "flush"
 
+    name = "Will Smith"
+    email = "will@example.com"
+    cpf = "66435618259"
+
 
 class CardFactory(Factory):
     class Meta:
         model = Card
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "flush"
+
+    holder_name = "Will Ferrell"
+    number = "4024007189386575"
+    expiration_date = "20/2050"
+    cvv = "185"
 
 
 class TypeFactory(Factory):
@@ -40,7 +52,19 @@ class PaymentFactory(Factory):
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "flush"
 
-    card = SubFactory(CardFactory)
+    credit_card = SubFactory(CardFactory)
+    type = SubFactory(TypeFactory)
+    buyer = SubFactory(BuyerFactory)
+    client = SubFactory(ClientFactory)
+
+
+class BoletoPaymentFactory(Factory):
+
+    class Meta:
+        model = Payment
+        sqlalchemy_session = db.session
+        sqlalchemy_session_persistence = "flush"
+
     type = SubFactory(TypeFactory)
     buyer = SubFactory(BuyerFactory)
     client = SubFactory(ClientFactory)

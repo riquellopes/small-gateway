@@ -60,3 +60,13 @@ class PaymentCreditCardSchema(PaymentBaseSchema):
         data["type_id"] = Type.CREDIT_CARD
         data["client_id"] = data.pop("X-CLIENT")
         return data
+
+
+class PaymentBoletoSchema(PaymentBaseSchema):
+
+    @post_load
+    def add_extra_data(self, data):
+        # Adding default type for payment with credit card.
+        data["type_id"] = Type.BOLETO
+        data["client_id"] = data.pop("X-CLIENT")
+        return data

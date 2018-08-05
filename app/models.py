@@ -33,7 +33,9 @@ class Type(db.Model):
 
 class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    amount = db.Column(db.DECIMAL(10, 2))
+
+    # Defining amount as db.Integer, because sqllite doesn't have decimal support.
+    amount = db.Column(db.Integer, nullable=False)
 
     card_id = db.Column(db.Integer, db.ForeignKey(Card.id))
     type_id = db.Column(db.Integer, db.ForeignKey(Type.id), nullable=False)
@@ -48,3 +50,9 @@ class Payment(db.Model):
 
     created_date = db.Column(db.DateTime, default=datetime.now())
     update_date = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+
+    @property
+    def code(self):
+        if self.type.id == Type.BOLETO:
+            return "{0:06d}".format(self.id)
+        return None
