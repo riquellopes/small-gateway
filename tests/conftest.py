@@ -51,4 +51,4 @@ def boleto():
 
 @pytest.fixture
 def client():
-    return ClientFactory(id=1, name="loja do gugu")
+    return ClientFactory.create()
