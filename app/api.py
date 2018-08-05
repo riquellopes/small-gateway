@@ -3,6 +3,8 @@ from flask import redirect
 from flask_restful import Api
 from flask_cors import CORS
 from flasgger import Swagger
+from flask_migrate import Migrate
+from flask_alembic import Alembic
 from webargs.flaskparser import abort, parser
 
 from app import app as application
@@ -14,6 +16,8 @@ def setup_app():
     db.init_app(application)
     CORS(application)
     Swagger(application)
+    Migrate(application, db)
+    Alembic(application)
 
     api = Api(application, prefix="/api/v1")
     api.add_resource(PaymentResource, "/credit-card/capture/", methods=['POST'])

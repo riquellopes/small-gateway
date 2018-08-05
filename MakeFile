@@ -15,4 +15,4 @@ test:
 
 shell:
 	docker-compose stop
-	docker-compose run --rm small python3 manage.py shell
+	docker-compose run --rm small flask shell
