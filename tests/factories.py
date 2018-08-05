@@ -11,7 +11,7 @@ class ClientFactory(Factory):
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "commit"
 
-    id = 1
+    # id = 1
     name = "Loja do GuGu"
 
 

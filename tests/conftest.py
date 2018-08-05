@@ -51,4 +51,4 @@ def boleto():
 
 @pytest.fixture
 def client():
-    return ClientFactory.create()
+    return ClientFactory.create(id=1)
