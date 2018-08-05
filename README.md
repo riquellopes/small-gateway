@@ -18,7 +18,7 @@ Para utilizar a aplicação é necessario possuir [docker](https://docs.docker.c
  $ make test path=INFORME_O_CAMINHO_DE_UM_TESTE_ESPECIFICO
 ```
 
-#### Como processar um pagamento:
+#### Como realizar um pagamento:
 A aplicação possui [swagger](https://swagger.io/) com todos os endpoints mapeados e a forma de utilizar.
 
 #### Definições gerais:
