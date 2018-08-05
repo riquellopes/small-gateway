@@ -3,7 +3,12 @@ import http
 import luhnpy
 import datetime
 
-from marshmallow import post_load, validates_schema, validates, ValidationError, fields
+from marshmallow import (
+    post_load,
+    validates_schema,
+    validates,
+    ValidationError, fields, validate, )
+
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import Payment, Type, Client, Card, Buyer
 from pycpfcnpj import cpfcnpj
@@ -41,6 +46,14 @@ class CardSchema(ModelSchema):
 
 
 class BuyerSchama(ModelSchema):
+    email = fields.Str(
+        required=True,
+        validate=validate.Email(error='Not a valid email address'),
+    )
+
+    name = fields.Str(
+        required=True,
+    )
 
     class Meta:
         model = Buyer
