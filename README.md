@@ -33,7 +33,7 @@ pode organizar o seu código, para faciliar o processo de construção. E eu fiz
 O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) foi o [SqLite](https://www.sqlite.org/index.html). Ele atende a demanda inicial de apresentação.
 
 ##### Linguagem:
-Para essa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) qual quer [linguagem](https://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o) poderia ser utilizada, já que não existia uma demanda inicial para a api, que suportasse a um número de request por segundo. O critério de escolha foi apenas no nível de proficiência do time.
+Para essa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) qual quer [linguagem](https://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o) poderia ser utilizada, já que não existia uma demanda inicial para a api, que suportasse a um número de request por segundo. O critério de escolha foi apenas o nível de proficiência do time.
 
 ##### CI
 O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls](http://coveralls.io/).
