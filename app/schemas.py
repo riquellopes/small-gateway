@@ -17,6 +17,12 @@ from app.db import db
 
 
 class CardSchema(ModelSchema):
+    holder_name = fields.Str(
+        required=True,
+    )
+    cvv = fields.Str(
+        required=True,
+    )
 
     class Meta:
         model = Card
