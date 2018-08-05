@@ -49,6 +49,7 @@ class BoletoResource(Resource):
 
 class PaymentResource(Resource):
 
+    @swag_from('docs/list.yml')
     def get(self):
         schema = PaymentReponseSchema(many=True, exclude=['created_date', 'update_date'])
         data = schema.dump(Payment.query.order_by(
@@ -59,6 +60,7 @@ class PaymentResource(Resource):
 
 class PaymentoDetailsResource(Resource):
 
+    @swag_from('docs/details.yml')
     def get(self, id):
         payment = Payment.query.filter(Payment.id == id)
         if payment.count() == 0:

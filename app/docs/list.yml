@@ -1,0 +1,74 @@
+Recupera lista com todos o pagamento criados.
+---
+parameters:
+  - in: header
+    name: X-CLIENT
+    schema:
+      type: string
+    required: true
+responses:
+  200:
+    description: Lista com pagamentos.
+    schema:
+      type: object
+      properties:
+        results:
+           type: array
+           items:
+               type: object
+               properties:
+                 amount:
+                    type: string
+                 id:
+                    type: integer
+                 buyer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      cpf:
+                        type: string
+                      id:
+                        type: integer
+                 creditcard:
+                    type: object
+                    properties:
+                      holder_name:
+                        type: string
+                      number:
+                        type: string
+                      expiration_date:
+                         type: string
+                      cvv:
+                         type: string
+                      id:
+                         type: integer
+                 typi:
+                    type: object
+                    properties:
+                      id:
+                         type: integer
+                      name:
+                         type: string
+                 client:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+
+  403:
+    description: Cliente inválido.
+    schema:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+             client:
+               type: array
+               items:
+                 type: string
