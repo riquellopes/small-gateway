@@ -5,7 +5,7 @@ Small Gateway
 =============
 
 
-#### Capture
+#### Credit cart payment:
 ```shell
 curl -X POST \
 http://localhost:5000/api/v1/credit-card/capture/ \
@@ -23,6 +23,22 @@ http://localhost:5000/api/v1/credit-card/capture/ \
             "number": "4485114090992814",
             "expiration_date": "02/2050",
             "cvv": "850"
+        }
+    }'
+```
+
+#### Boleto payment:
+```shell
+curl -X POST \
+http://localhost:5000/api/v1/boleto/ \
+-H 'content-type: application/json' \
+-H 'X-CLIENT: 1' \
+-d '{
+        "amount": 50.00,
+        "buyer": {
+            "name": "Will Smith",
+            "email": "will.smith@example.com",
+            "cpf": "93621378448"
         }
     }'
 ```
