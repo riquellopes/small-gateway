@@ -38,19 +38,10 @@ class CardSchema(ModelSchema):
                 "The credit card it's expired")
 
 
-class PaymentCreditCardSchema(ModelSchema):
-    credit_card = fields.Nested(CardSchema)
-
+class PaymentBaseSchema(ModelSchema):
     class Meta:
         model = Payment
         sqla_session = db.session
-
-    @post_load
-    def add_extra_data(self, data):
-        # Adding default type for payment with credit card.
-        data["type_id"] = Type.CREDIT_CARD
-        data["client_id"] = data.pop("X-CLIENT")
-        return data
 
     @validates_schema
     def validate(self, data):
@@ -58,3 +49,14 @@ class PaymentCreditCardSchema(ModelSchema):
             raise ValidationError(
                 "Client does not exist.",
                 status_code=http.client.FORBIDDEN, field_names="client")
+
+
+class PaymentCreditCardSchema(PaymentBaseSchema):
+    credit_card = fields.Nested(CardSchema)
+
+    @post_load
+    def add_extra_data(self, data):
+        # Adding default type for payment with credit card.
+        data["type_id"] = Type.CREDIT_CARD
+        data["client_id"] = data.pop("X-CLIENT")
+        return data
