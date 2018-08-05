@@ -102,7 +102,7 @@ class PaymentBoletoSchema(PaymentBaseSchema):
 
     @post_load
     def add_extra_data(self, data):
-        # Adding default type for payment with credit card.
+        # Adding default type for payment with boleto.
         data["type_id"] = Type.BOLETO
         data["client_id"] = data.pop("X-CLIENT")
         return data
