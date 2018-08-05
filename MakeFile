@@ -1,18 +1,36 @@
 .SILENT:
 
-up:
+stop:
 	docker-compose stop
+
+up:stop
 	docker-compose up
 
-build:
-	docker-compose stop
+build:stop
 	docker-compose build
 
-test:
-	docker-compose stop
+test:stop
 	docker-compose run --rm small pytest --cov=app --cov-report term-missing tests/${path} -s -r a --color=yes -vvv
 
 
-shell:
-	docker-compose stop
+shell:stop
 	docker-compose run --rm small flask shell
+
+install:stop
+	docker-compose build
+	rm -rf .tmp/*
+	docker-compose stop
+	docker-compose run --rm small flask db upgrade
+	docker-compose stop
+
+init:stop
+	docker-compose run --rm small flask db init
+
+makemigrations:stop
+	docker-compose run --rm small flask db migrate
+
+migrate:stop
+	docker-compose run --rm small flask db upgrade
+
+makemigrations_empty:
+	docker-compose run --rm small flask db revision
