@@ -9,4 +9,5 @@ install:
     - pip install -r requirements_dev.txt
 
 script:
-     - pytest tests/ -s -r a --color=yes -vvv
+     - pytest --cov=app --cov-report term-missing tests/ -s -r a --color=yes -vvv
+     - coveralls
