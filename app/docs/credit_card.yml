@@ -1,4 +1,4 @@
-Captura pagamento com cartão de crédito.
+Efetua pagamento via cartão de crédito.
 ---
 parameters:
   - in: header

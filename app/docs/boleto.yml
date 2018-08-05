@@ -1,4 +1,4 @@
-Gera número para pagamento com boleto.
+Efetua pagamento via boleto.
 ---
 parameters:
   - in: header

@@ -1,4 +1,4 @@
-Captura pagamento com cartão de crédito.
+Recupera o pagamento detalhado.
 ---
 parameters:
   - in: header
@@ -13,7 +13,7 @@ parameters:
     required: true
 responses:
   200:
-    description: Pagamento realizado com sucesso.
+    description: Detalhe do pagamento
     schema:
       type: object
       properties:
@@ -21,6 +21,8 @@ responses:
           type: object
           properties:
             amount:
+               type: string
+            status:
                type: string
             buyer:
                type: object

@@ -1,4 +1,4 @@
-Recupera lista com todos o pagamento criados.
+Recupera lista com todos o pagamento realizados.
 ---
 parameters:
   - in: header
@@ -17,6 +17,8 @@ responses:
            items:
                type: object
                properties:
+                 status:
+                    type: string
                  amount:
                     type: string
                  id:
