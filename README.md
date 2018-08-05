@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/riquellopes/small-gateway.svg?branch=master)](https://travis-ci.org/riquellopes/small-gateway)
+
 Small Gateway
 =============
 
