@@ -5,7 +5,9 @@ import datetime
 
 from marshmallow import post_load, validates_schema, validates, ValidationError, fields
 from marshmallow_sqlalchemy import ModelSchema
-from app.models import Payment, Type, Client, Card
+from app.models import Payment, Type, Client, Card, Buyer
+from pycpfcnpj import cpfcnpj
+
 from app.db import db
 
 
@@ -38,7 +40,22 @@ class CardSchema(ModelSchema):
                 "The credit card it's expired")
 
 
+class BuyerSchama(ModelSchema):
+
+    class Meta:
+        model = Buyer
+        sqla_session = db.session
+
+    @validates("cpf")
+    def validate_cpf(self, cpf):
+
+        if cpfcnpj.validate(cpf) is False:
+            raise ValidationError("Invalid number.")
+
+
 class PaymentBaseSchema(ModelSchema):
+    buyer = fields.Nested(BuyerSchama)
+
     class Meta:
         model = Payment
         sqla_session = db.session

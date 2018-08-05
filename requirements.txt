@@ -7,3 +7,4 @@ webargs==4.0.0
 marshmallow==2.15.3
 marshmallow-sqlalchemy==0.14.0
 luhnpy==1.0.0
+pycpfcnpj==1.5
