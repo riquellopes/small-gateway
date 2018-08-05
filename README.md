@@ -20,3 +20,20 @@ Para utilizar a aplicação é necessario possuir [docker](https://docs.docker.c
 
 #### Como processar um pagamento:
 A aplicação possui [swagger](https://swagger.io/) com todos os endpoint mapeados e a forma de utilizar.
+
+#### Definições gerais:
+
+##### Aplicação:
+
+Para criar o gateway de pagamento o framework selecionado foi o [flask](http://flask.pocoo.org/). Ele atende
+a demanda proposta por sua simplicidade e por possuir várias [extenções](http://flask.pocoo.org/extensions/) que facilitam o processo de construção. O [flask](http://flask.pocoo.org/) possue alguns [modelos](http://exploreflask.com/en/latest/organizing.html#single-module) de como você
+pode organizar o seu código, para faciliar o processo de construção. E eu fiz uma mescla disso, transformando em pacotes apenas o que possuia uma complexidade muita alta de compreensão.
+
+##### Banco de dados:
+O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) foi o [SqLite](https://www.sqlite.org/index.html). Ele atende a demanda inicial de apresentação.
+
+##### Linguagem:
+Para essa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) qual quer [linguagem](https://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o) poderia ser utilizada, já que não existia uma demanda inicial para a api, que suportasse a um número de request por segundo. O critério de escolha foi apenas no nível de proficiência do time.
+
+##### CI
+O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls](http://coveralls.io/).
