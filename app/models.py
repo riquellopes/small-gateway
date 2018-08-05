@@ -32,10 +32,15 @@ class Type(db.Model):
 
 
 class Payment(db.Model):
+    PEDDING = "pedding"
+    PROCESSING = "processing"
+    PROCESSED = "processed"
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     # Defining amount as db.Integer, because sqllite doesn't have decimal support.
     amount = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.String(10), default=PEDDING)
 
     card_id = db.Column(db.Integer, db.ForeignKey(Card.id))
     type_id = db.Column(db.Integer, db.ForeignKey(Type.id), nullable=False)
