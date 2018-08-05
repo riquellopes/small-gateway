@@ -7,7 +7,7 @@ from webargs.flaskparser import abort, parser
 
 from app import app as application
 from app.db import db
-from app.resources import PaymentResource
+from app.resources import PaymentResource, BoletoResource
 
 
 def setup_app():
@@ -16,7 +16,8 @@ def setup_app():
     Swagger(application)
 
     api = Api(application, prefix="/api/v1")
-    api.add_resource(PaymentResource, "/capture/", methods=['POST'])
+    api.add_resource(PaymentResource, "/credit-card/capture/", methods=['POST'])
+    api.add_resource(BoletoResource, "/boleto/", methods=['POST'])
 
     return application
 

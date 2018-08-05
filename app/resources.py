@@ -82,3 +82,9 @@ class PaymentResource(Resource):
 
         return make_response(
             jsonify(mensagem="payment created successfully"), http.HTTPStatus.OK)
+
+
+class BoletoResource(Resource):
+
+    def post(self):
+        pass

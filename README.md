@@ -5,7 +5,7 @@ Small Gateway
 #### Capture
 ```shell
 curl -X POST \
-http://localhost:5000/api/v1/capture/ \
+http://localhost:5000/api/v1/credit-card/capture/ \
 -H 'content-type: application/json' \
 -H 'X-CLIENT: 1' \
 -d '{

@@ -2,6 +2,8 @@ import pytest
 from app.api import app as application
 from app.api import db
 
+from .factories import TypeFactory, ClientFactory, Type
+
 
 @pytest.fixture(scope='session')
 def app(request):
@@ -35,3 +37,18 @@ def rollback(app, request):
         db.drop_all()
         db.create_all()
     request.addfinalizer(fin)
+
+
+@pytest.fixture
+def credit_card():
+    return TypeFactory(id=Type.CREDIT_CARD, name="credit card")
+
+
+@pytest.fixture
+def boleto():
+    return TypeFactory(id=Type.BOLETO, name="boleto")
+
+
+@pytest.fixture
+def client():
+    return ClientFactory(id=1, name="loja do gugu")
