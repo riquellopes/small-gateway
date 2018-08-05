@@ -10,23 +10,22 @@ from marshmallow import (
     ValidationError, fields, validate, )
 
 from marshmallow_sqlalchemy import ModelSchema
-from app.models import Payment, Type, Client, Card, Buyer
+from app.models import Payment, Type, Client
 from pycpfcnpj import cpfcnpj
+
+from .response import (
+    CardResponseSchema, BuyerResponseSchema, TypeResponseSchema, ClientResponseSchema)
 
 from app.db import db
 
 
-class CardSchema(ModelSchema):
+class CardSchema(CardResponseSchema):
     holder_name = fields.Str(
         required=True,
     )
     cvv = fields.Str(
         required=True,
     )
-
-    class Meta:
-        model = Card
-        sqla_session = db.session
 
     @validates("number")
     def validate_number(self, number):
@@ -51,7 +50,7 @@ class CardSchema(ModelSchema):
                 "The credit card it's expired")
 
 
-class BuyerSchama(ModelSchema):
+class BuyerSchema(BuyerResponseSchema):
     email = fields.Str(
         required=True,
         validate=validate.Email(error='Not a valid email address'),
@@ -61,10 +60,6 @@ class BuyerSchama(ModelSchema):
         required=True,
     )
 
-    class Meta:
-        model = Buyer
-        sqla_session = db.session
-
     @validates("cpf")
     def validate_cpf(self, cpf):
 
@@ -73,7 +68,9 @@ class BuyerSchama(ModelSchema):
 
 
 class PaymentBaseSchema(ModelSchema):
-    buyer = fields.Nested(BuyerSchama)
+    buyer = fields.Nested(BuyerSchema)
+    type = fields.Nested(TypeResponseSchema)
+    client = fields.Nested(ClientResponseSchema)
 
     class Meta:
         model = Payment
@@ -88,7 +85,7 @@ class PaymentBaseSchema(ModelSchema):
 
 
 class PaymentCreditCardSchema(PaymentBaseSchema):
-    credit_card = fields.Nested(CardSchema)
+    credit_card = fields.Nested(CardSchema, required=True)
 
     @post_load
     def add_extra_data(self, data):

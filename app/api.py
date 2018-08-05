@@ -10,7 +10,8 @@ from webargs.flaskparser import abort, parser
 
 from app import app as application
 from app.db import db
-from app.resources import PaymentResource, BoletoResource
+from app.resources import (
+    CreditCardResource, BoletoResource, PaymentoDetailsResource, PaymentResource)
 
 
 def setup_app():
@@ -21,8 +22,10 @@ def setup_app():
     Alembic(application)
 
     api = Api(application, prefix="/api/v1")
-    api.add_resource(PaymentResource, "/credit-card/capture/", methods=['POST'])
+    api.add_resource(CreditCardResource, "/credit-card/capture/", methods=['POST'])
     api.add_resource(BoletoResource, "/boleto/", methods=['POST'])
+    api.add_resource(PaymentResource, "/payment/", methods=['GET'])
+    api.add_resource(PaymentoDetailsResource, "/payment/<int:id>", methods=['GET'])
 
     return application
 
