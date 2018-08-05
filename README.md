@@ -4,41 +4,19 @@
 Small Gateway
 =============
 
+O small gateway é uma proposta simples ao grande universo de como realmente funciona o fluxo de captura de valores de um cartão ou geração de boleto.
 
-#### Credit cart payment:
-```shell
-curl -X POST \
-http://localhost:5000/api/v1/credit-card/ \
--H 'content-type: application/json' \
--H 'X-CLIENT: 1' \
--d '{
-        "amount": 50.00,
-        "buyer": {
-            "name": "Will Smith",
-            "email": "will.smith@example.com",
-            "cpf": "93621378448"
-        },
-        "creditcard": {
-            "holder_name": "Will Ferrell",
-            "number": "4485114090992814",
-            "expiration_date": "02/2050",
-            "cvv": "850"
-        }
-    }'
+#### Montando a aplicação:
+Para utilizar a aplicação é necessario possuir [docker](https://docs.docker.com/install/) e [docker-compose](https://docs.docker.com/compose/install/) na máquina. Para montar a aplicação siga os passos a baixo:
+
+```sh
+ $ make install # Para buildar o container e instalar todas as dependências.
+ $ make up # levanta a aplicação na porta 5000. Para acessar - http://localhost:5000/
+
+ $ make test # executa todos os testes na aplicação
+ or
+ $ make test path=INFORME_O_CAMINHO_DE_UM_TESTE_ESPECIFICO
 ```
 
-#### Boleto payment:
-```shell
-curl -X POST \
-http://localhost:5000/api/v1/boleto/ \
--H 'content-type: application/json' \
--H 'X-CLIENT: 1' \
--d '{
-        "amount": 50.00,
-        "buyer": {
-            "name": "Will Smith",
-            "email": "will.smith@example.com",
-            "cpf": "93621378448"
-        }
-    }'
-```
+#### Como processar um pagamento:
+A aplicação possui [swagger](https://swagger.io/) com todos os endpoint mapeados e a forma de utilizar.
