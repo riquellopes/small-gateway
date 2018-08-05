@@ -19,7 +19,7 @@ Para utilizar a aplicação é necessario possuir [docker](https://docs.docker.c
 ```
 
 #### Como processar um pagamento:
-A aplicação possui [swagger](https://swagger.io/) com todos os endpoint mapeados e a forma de utilizar.
+A aplicação possui [swagger](https://swagger.io/) com todos os endpoints mapeados e a forma de utilizar.
 
 #### Definições gerais:
 
