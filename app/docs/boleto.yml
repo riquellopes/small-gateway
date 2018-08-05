@@ -30,6 +30,10 @@ responses:
     description: Retorna o número do boleto
     schema:
       type: object
+      properties:
+          payment_code:
+              type: string
+              default: "000001"
   403:
     description: Cliente inválido.
     schema:
