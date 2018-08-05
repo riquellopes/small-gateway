@@ -29,6 +29,7 @@ class BoletoResource(Resource):
     @use_args(
         PaymentBoletoSchema(
             strict=True, only=("amount", "buyer", "X-CLIENT")), locations=("headers", "json"))
+    @swag_from('docs/boleto.yml')
     def post(self, payment):
         db.session.add(payment)
         db.session.commit()
