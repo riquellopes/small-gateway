@@ -48,9 +48,7 @@ class PaymentCreditCardSchema(ModelSchema):
     @post_load
     def add_extra_data(self, data):
         # Adding default type for payment with credit card.
-        data["type"] = Type.query.filter_by(
-            id=Type.CREDIT_CARD).first()
-
+        data["type_id"] = Type.CREDIT_CARD
         data["client_id"] = data.pop("X-CLIENT")
         return data
 
