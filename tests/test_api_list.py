@@ -3,9 +3,9 @@ from .factories import CreditCardPaymentFactory, BoletoPaymentFactory
 
 
 @pytest.fixture
-def mockisons(credit_card, boleto):
-    CreditCardPaymentFactory.create(type=credit_card)
-    BoletoPaymentFactory.create(type=boleto)
+def mockisons():
+    CreditCardPaymentFactory.create()
+    BoletoPaymentFactory.create()
 
 
 def test_get_status_200_when_call_payment_list(test_client):

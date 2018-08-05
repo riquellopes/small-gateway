@@ -44,6 +44,8 @@ class TypeFactory(Factory):
         sqlalchemy_session = db.session
         sqlalchemy_session_persistence = "commit"
 
+    name = "Anything"
+
 
 class CreditCardPaymentFactory(Factory):
 
