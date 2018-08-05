@@ -8,7 +8,7 @@ Small Gateway
 #### Credit cart payment:
 ```shell
 curl -X POST \
-http://localhost:5000/api/v1/credit-card/capture/ \
+http://localhost:5000/api/v1/credit-card/ \
 -H 'content-type: application/json' \
 -H 'X-CLIENT: 1' \
 -d '{

@@ -22,7 +22,7 @@ def setup_app():
     Alembic(application)
 
     api = Api(application, prefix="/api/v1")
-    api.add_resource(CreditCardResource, "/credit-card/capture/", methods=['POST'])
+    api.add_resource(CreditCardResource, "/credit-card/", methods=['POST'])
     api.add_resource(BoletoResource, "/boleto/", methods=['POST'])
     api.add_resource(PaymentResource, "/payment/", methods=['GET'])
     api.add_resource(PaymentoDetailsResource, "/payment/<int:id>", methods=['GET'])

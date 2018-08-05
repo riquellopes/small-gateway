@@ -29,7 +29,7 @@ def test_get_status_200_when_a_new_transaction_of_capture_is_done(test_client, c
     }
 
     response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": client.id}, json=data)
+        "/api/v1/credit-card/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 200
     assert response.json["mensagem"] == "payment created successfully"
 
@@ -45,7 +45,7 @@ def test_get_status_422_when_credit_card_it_is_not_a_number(test_client, credit_
     }
 
     response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": client.id}, json=data)
+        "/api/v1/credit-card/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 422
 
     data = response.json
@@ -63,7 +63,7 @@ def test_get_status_422_when_to_send_a_invalid_credit_card(test_client, credit_c
     }
 
     response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": client.id}, json=data)
+        "/api/v1/credit-card/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 422
 
     data = response.json
@@ -82,7 +82,7 @@ def test_get_422_when_buyer_send_only_0000000000000000_as_number(
     }
 
     response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": client.id}, json=data)
+        "/api/v1/credit-card/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 422
 
     data = response.json
@@ -101,7 +101,7 @@ def test_get_422_when_to_send_the_credit_card_expired(
     }
 
     response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": client.id}, json=data)
+        "/api/v1/credit-card/", headers={"X-CLIENT": client.id}, json=data)
     assert response.status_code == 422
 
     data = response.json
