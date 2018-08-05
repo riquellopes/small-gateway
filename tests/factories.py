@@ -45,7 +45,7 @@ class TypeFactory(Factory):
         sqlalchemy_session_persistence = "commit"
 
 
-class PaymentFactory(Factory):
+class CreditCardPaymentFactory(Factory):
 
     class Meta:
         model = Payment
@@ -56,6 +56,8 @@ class PaymentFactory(Factory):
     type = SubFactory(TypeFactory)
     buyer = SubFactory(BuyerFactory)
     client = SubFactory(ClientFactory)
+
+    amount = 50
 
 
 class BoletoPaymentFactory(Factory):
@@ -68,3 +70,5 @@ class BoletoPaymentFactory(Factory):
     type = SubFactory(TypeFactory)
     buyer = SubFactory(BuyerFactory)
     client = SubFactory(ClientFactory)
+
+    amount = 50
