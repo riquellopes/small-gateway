@@ -12,13 +12,6 @@ def test_should_get_status_200(test_client):
     assert response.status_code == 200
 
 
-def test_should_get_status_status_403_when_x_client_not_found(test_client, client):
-    response = test_client.post(
-        "/api/v1/credit-card/capture/", headers={"X-CLIENT": 1000})
-
-    assert response.status_code == 403
-
-
 def test_get_status_200_when_a_new_transaction_of_capture_is_done(test_client, credit_card, client):
     data = {
         "amount": 50,
