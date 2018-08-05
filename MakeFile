@@ -11,3 +11,8 @@ build:
 test:
 	docker-compose stop
 	docker-compose run --rm small pytest --cov=app --cov-report term-missing tests/${path} -s -r a --color=yes -vvv
+
+
+shell:
+	docker-compose stop
+	docker-compose run --rm small python3 manage.py shell
