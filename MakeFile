@@ -34,3 +34,6 @@ migrate:stop
 
 makemigrations_empty:
 	docker-compose run --rm small flask db revision
+
+access:
+	docker exec -it small-gateway sh
