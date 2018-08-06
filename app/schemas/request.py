@@ -53,6 +53,11 @@ class CardSchema(CardResponseSchema):
             raise ValidationError(
                 "The credit card it's expired")
 
+    @validates("holder_name")
+    def validate_holder_name(self, holder_name):
+        if len(holder_name.split(" ")) < 2:
+            raise ValidationError("The holder_name it's invalid.")
+
 
 class BuyerSchema(BuyerResponseSchema):
     email = fields.Str(
