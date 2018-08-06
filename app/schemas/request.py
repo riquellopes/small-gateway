@@ -1,4 +1,5 @@
 # coding: utf-8
+import re
 import http
 import luhnpy
 import datetime
@@ -41,6 +42,9 @@ class CardSchema(CardResponseSchema):
 
     @validates("expiration_date")
     def validate_expiration_date(self, expiration_date):
+        if re.match(r'\d{2}/\d{4}', expiration_date) is None:
+            raise ValidationError("The expiration_date isn't valid date.")
+
         expiration_date_parse = datetime.datetime.strptime(
             expiration_date, "%m/%Y"
         )
