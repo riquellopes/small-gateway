@@ -37,3 +37,6 @@ makemigrations_empty:
 
 access:
 	docker exec -it small-gateway sh
+
+drop_datebase:
+	rm -rf .tmp/*
