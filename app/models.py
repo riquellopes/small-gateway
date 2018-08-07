@@ -21,6 +21,7 @@ class Card(db.Model):
     number = db.Column(db.String(50), nullable=False)
     expiration_date = db.Column(db.String(10), nullable=False)
     cvv = db.Column(db.String(10), nullable=False)
+    brand = db.Column(db.String(50), nullable=False)
 
 
 class Type(db.Model):
