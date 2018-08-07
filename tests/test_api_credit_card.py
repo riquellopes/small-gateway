@@ -1,3 +1,4 @@
+from app.models import Payment
 
 
 def test_should_get_status_301(test_client):
@@ -33,6 +34,8 @@ def test_get_status_200_when_a_new_transaction_of_capture_is_done(test_client, c
     assert response.status_code == 200
     assert response.json["mensagem"] == "payment created successfully"
 
+    assert Payment.query.first().credit_card.brand == "Visa"
+
 
 def test_get_status_422_when_credit_card_it_is_not_a_number(test_client, credit_card, client):
     data = {
@@ -49,7 +52,7 @@ def test_get_status_422_when_credit_card_it_is_not_a_number(test_client, credit_
     assert response.status_code == 422
 
     data = response.json
-    assert data['errors']['credit_card']['number'][0] == 'The credit card should be a numeral.'
+    assert data['errors']['credit_card']['number'][0] == 'Invalid credit card.'
 
 
 def test_get_status_422_when_to_send_a_invalid_credit_card(test_client, credit_card, client):

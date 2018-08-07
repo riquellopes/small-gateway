@@ -1,7 +1,6 @@
 # coding: utf-8
 import re
 import http
-import luhnpy
 import datetime
 
 from marshmallow import (
@@ -12,6 +11,7 @@ from marshmallow import (
 
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import Payment, Type, Client
+from app.creditcard import CreditCard
 from pycpfcnpj import cpfcnpj
 
 from .response import (
@@ -27,17 +27,20 @@ class CardSchema(CardResponseSchema):
     cvv = fields.Str(
         required=True,
     )
+    brand = fields.Str(
+        required=False,
+    )
+
+    @post_load
+    def add_extra_data(self, data):
+        data["brand"] = self._creditcard.brand().value
+        return data
 
     @validates("number")
     def validate_number(self, number):
-        if number.isdigit() is False:
-            raise ValidationError(
-                "The credit card should be a numeral.")
+        self._creditcard = CreditCard(number)
 
-        if len(number) > 0 and int(number) == 0:
-            raise ValidationError("Invalid credit card.")
-
-        if luhnpy.verify(number) is False:
+        if self._creditcard.is_valid() is False:
             raise ValidationError("Invalid credit card.")
 
     @validates("expiration_date")
