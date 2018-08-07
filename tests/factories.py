@@ -36,6 +36,7 @@ class CardFactory(Factory):
     number = "4024007189386575"
     expiration_date = "20/2050"
     cvv = "185"
+    brand = "Visa"
 
 
 class TypeFactory(Factory):
