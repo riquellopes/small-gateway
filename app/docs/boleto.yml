@@ -37,15 +37,7 @@ responses:
   403:
     description: Cliente inválido.
     schema:
-      type: object
-      properties:
-        errors:
-          type: object
-          properties:
-             client:
-               type: array
-               items:
-                 type: string
+      id: Response403
   422:
     description: Houve algum erro ao processar a requisição
     schema:
