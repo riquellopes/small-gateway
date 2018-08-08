@@ -10,7 +10,7 @@ parameters:
     name: data
     required: true
     schema:
-      id: Payload
+      id: CreditCard
       required:
         - amount
       properties:
