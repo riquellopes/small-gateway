@@ -2,7 +2,7 @@ from .factories import CreditCardPaymentFactory, BoletoPaymentFactory
 
 
 def test_when_boleto_payment_code_get_the_boleto_number(boleto):
-    pay = BoletoPaymentFactory(
+    pay = BoletoPaymentFactory.build(
         type=boleto,
 
         id=1,
@@ -12,7 +12,7 @@ def test_when_boleto_payment_code_get_the_boleto_number(boleto):
 
 
 def test_when_creditcard_payment_code_get_is_none(credit_card):
-    pay = CreditCardPaymentFactory(
+    pay = CreditCardPaymentFactory.build(
         type=credit_card
     )
 
