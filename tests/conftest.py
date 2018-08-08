@@ -41,12 +41,12 @@ def rollback(app, request):
 
 @pytest.fixture
 def credit_card():
-    return TypeFactory(id=Type.CREDIT_CARD, name="credit card")
+    return TypeFactory.build(id=Type.CREDIT_CARD, name="credit card")
 
 
 @pytest.fixture
 def boleto():
-    return TypeFactory(id=Type.BOLETO, name="boleto")
+    return TypeFactory.build(id=Type.BOLETO, name="boleto")
 
 
 @pytest.fixture

@@ -20,14 +20,14 @@ class CreditCardResource(Resource):
     def post(self, payment):
         current_app.logger.info(
             "After process: type {}, credit {} buyer {}".format(
-                payment.type, payment.credit_card, payment.buyer))
+                payment.type_id, payment.credit_card, payment.buyer))
 
         db.session.add(payment)
         db.session.commit()
 
         current_app.logger.info(
             "Before proecss: payment {}, type {}, credit {} buyer".format(
-                payment.id, payment.type.id, payment.credit_card, payment.buyer))
+                payment.id, payment.type_id, payment.credit_card, payment.buyer))
 
         return make_response(
             jsonify(mensagem="payment created successfully"), http.HTTPStatus.OK)

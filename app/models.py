@@ -59,6 +59,7 @@ class Payment(db.Model):
 
     @property
     def code(self):
-        if self.type.id == Type.BOLETO:
+        type_id = getattr(self.type, "id", self.type_id)
+        if type_id == Type.BOLETO:
             return "{0:06d}".format(self.id)
         return None
