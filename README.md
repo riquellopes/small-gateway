@@ -15,7 +15,7 @@ Para utilizar a aplicação é necessário possuir [docker](https://docs.docker.
 
  $ make test # Executa todos os testes na aplicação
  or
- $ make test path=INFORME_O_CAMINHO_DE_UM_TESTE_ESPECIFICO # Executa um teste especifico. Ex: make test path=test_api_boleto.py
+ $ make test path={CAMINHO_DO_ARQUIVO} # Executa um teste especifico. Ex: make test path=test_api_boleto.py
 ```
 
 #### Como realizar um pagamento:
