@@ -29,8 +29,10 @@ Para criar o gateway de pagamento o framework selecionado foi a [microframework]
 a demanda proposta, por sua simplicidade e por possuir várias [extenções](http://flask.pocoo.org/extensions/) que facilitam o processo de construção. O [flask](http://flask.pocoo.org/) possue alguns [modelos](http://exploreflask.com/en/latest/organizing.html#single-module) de como você
 pode organizar o seu código, para faciliar o processo de construção. E eu fiz uma mescla disso, transformando em pacotes apenas o que possuia uma complexidade muita alta de compreensão.
 
+
 ##### Banco de dados:
-O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) foi o [sqlite](https://www.sqlite.org/index.html). Ele atende a demanda inicial de apresentação.
+O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) foi o [sqlite](https://www.sqlite.org/index.html).
+
 
 ##### CI
 O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls](http://coveralls.io/).
