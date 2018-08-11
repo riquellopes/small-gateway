@@ -39,3 +39,6 @@ O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls
 
 ##### Diagrama de classe:
 ![](class_diagram.jpg)
+
+##### Diagrama de arquitetura:
+![](small_gateway_app.jpg)
