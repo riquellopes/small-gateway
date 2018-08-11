@@ -6,7 +6,7 @@ Small Gateway
 
 O small gateway é uma proposta simples ao grande universo de como realmente funciona o fluxo de captura de valores de um cartão ou geração de boleto.
 
-#### Montando a aplicação:
+#### Como iniciar a aplicação:
 Para utilizar a aplicação é necessário possuir [docker](https://docs.docker.com/install/) e [docker-compose](https://docs.docker.com/compose/install/) na máquina. Para montar a aplicação siga os passos a baixo:
 
 ```sh
