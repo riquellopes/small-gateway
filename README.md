@@ -34,7 +34,7 @@ pode organizar o seu código, para faciliar o processo de construção. E eu fiz
 O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) foi o [sqlite](https://www.sqlite.org/index.html).
 
 
-##### CI
+##### Continuous integrations (CI)
 O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls](http://coveralls.io/).
 
 ##### Modelo:
