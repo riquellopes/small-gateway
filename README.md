@@ -37,5 +37,5 @@ O banco útilizado nessa [poc](https://pt.wikipedia.org/wiki/Prova_de_conceito) 
 ##### Continuous integrations (CI)
 O repositório está integrado com [travis](https://travis-ci.org/) e [coveralls](http://coveralls.io/).
 
-##### Modelo:
+##### Diagrama de classe:
 ![](class_diagram.jpg)
